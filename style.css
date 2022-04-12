@@ -1,0 +1,19 @@
+.container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container .books-grid {
+    width: 800px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-gap: 20px;
+}
+
+.container .books-grid .books {
+    background-color: green;
+    filter: drop-shadow(0px 2px 5px #a3a3a2);
+    border-radius: 15px;
+}
