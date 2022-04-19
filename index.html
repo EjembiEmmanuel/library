@@ -9,113 +9,127 @@
     <title>Library</title>
 </head>
 <body>
-    <div class="container">
-        <div class="books-grid">
-            <div class="books">
-                <div class="title">
-                    <p></p>
+    <div class="main">
+        <div class="header">
+            <div class="logo-area">
+                <div class="logo">
+                    <svg style="width:96px;height:96px" viewBox="0 0 24 24">
+                        <path fill="currentColor" d="M12,8A3,3 0 0,0 15,5A3,3 0 0,0 12,2A3,3 0 0,0 9,5A3,3 0 0,0 12,8M12,11.54C9.64,9.35 6.5,8 3,8V19C6.5,19 9.64,20.35 12,22.54C14.36,20.35 17.5,19 21,19V8C17.5,8 14.36,9.35 12,11.54Z" />
+                    </svg>
                 </div>
-                <div class="author">
-                    <p>By: Goerge R.R. Martin</p>
-                </div>
-                <div class="pages">
-                    <p>Number of pages: 694</p>
-                </div>
-                <div class="language">
-                    <p>Language: English</p>
-                </div>
-                <div class="published">
-                    <p>Published: July 1, 1996</p>
+                <div class="logo-text">
+                    <p>My Library</p>
                 </div>
             </div>
-            <div class="books">
-                <div class="title">
-                    <p>A Game of Thrones</p>
+            <div class="log-area">
+                <div class="log-header">
+                    <p>Library Log</p>
                 </div>
-                <div class="author">
-                    <p>By: Goerge R.R. Martin</p>
-                </div>
-                <div class="pages">
-                    <p>Number of pages: 694</p>
-                </div>
-                <div class="language">
-                    <p>Language: English</p>
-                </div>
-                <div class="published">
-                    <p>Published: July 1, 1996</p>
-                </div>
-            </div>
-            <div class="books">
-                <div class="title">
-                    <p>A Game of Thrones</p>
-                </div>
-                <div class="author">
-                    <p>By: Goerge R.R. Martin</p>
-                </div>
-                <div class="pages">
-                    <p>Number of pages: 694</p>
-                </div>
-                <div class="language">
-                    <p>Language: English</p>
-                </div>
-                <div class="published">
-                    <p>Published: July 1, 1996</p>
-                </div>
-            </div>
-            <div class="books">
-                <div class="title">
-                    <p>A Game of Thrones</p>
-                </div>
-                <div class="author">
-                    <p>By: Goerge R.R. Martin</p>
-                </div>
-                <div class="pages">
-                    <p>Number of pages: 694</p>
-                </div>
-                <div class="language">
-                    <p>Language: English</p>
-                </div>
-                <div class="published">
-                    <p>Published: July 1, 1996</p>
-                </div>
-            </div>
-            <div class="books">
-                <div class="title">
-                    <p>A Game of Thrones</p>
-                </div>
-                <div class="author">
-                    <p>By: Goerge R.R. Martin</p>
-                </div>
-                <div class="pages">
-                    <p>Number of pages: 694</p>
-                </div>
-                <div class="language">
-                    <p>Language: English</p>
-                </div>
-                <div class="published">
-                    <p>Published: July 1, 1996</p>
-                </div>
-            </div>
-            <div class="books">
-                <div class="title">
-                    <p>A Game of Thrones</p>
-                </div>
-                <div class="author">
-                    <p>By: Goerge R.R. Martin</p>
-                </div>
-                <div class="pages">
-                    <p>Number of pages: 694</p>
-                </div>
-                <div class="language">
-                    <p>Language: English</p>
-                </div>
-                <div class="published">
-                    <p>Published: July 1, 1996</p>
+                <div class="log-details">
+                    <div class="total-books">
+                        <p>Total Books: 0</p>
+                    </div>
+                    <div class="read">
+                        <p>Read: 0</p>
+                    </div>
+                    <div class="not-read">
+                        <p>Not Read: 0</p>
+                    </div>
                 </div>
             </div>
         </div>
+        <div class="display-mode">
+            <div class="display-toggle">
+                <p>Dark Mode: </p>
+            </div>
+        </div>
+        <div class="status-bar">
+            <div class="order-by">
+                <label for="">Order By:</label>
+                <select name="order-by" id="order-by-date">
+                    <option value="1">Date added</option>
+                    <option value="2">Date Published</option>
+                </select>
+                <select name="order-by" id="order-by">
+                    <option value="1">Ascending</option>
+                    <option value="2">Descending</option>
+                </select>
+            </div>
+            <div class="status">
+                <div class="read">
+                    <P>Read: </P>
+                    <div class="read-indicator"></div>
+                </div>
+                <div class="not-read">
+                    <p>Not Read: </p>
+                    <div class="not-read-indicator"></div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="books-grid">
+                <div class="books">
+                    <button>
+                        <svg style="width:16px;height:16px" viewBox="0 0 24 24">
+                            <path fill="currentColor" d="M20 6.91L17.09 4L12 9.09L6.91 4L4 6.91L9.09 12L4 17.09L6.91 20L12 14.91L17.09 20L20 17.09L14.91 12L20 6.91Z" />
+                        </svg>
+                    </button>
+                    <div class="book-details">
+                        <div class="title">
+                            <p></p>
+                        </div>
+                        <div class="author">
+                            <p></p>
+                        </div>
+                        <div class="pages">
+                            <p></p>
+                        </div>
+                        <div class="language">
+                            <p></p>
+                        </div>
+                        <div class="published">
+                            <p></p>
+                        </div>
+                    </div>
+                    <div class="book-status">
+                        <label for="read-toggle">Mark as read: </label>
+                        <input type="checkbox" id="read-toggle" checked>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="new-book">
+            <button class="modal-btn" id="modal-btn">
+                <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+                    <path fill="currentColor" d="M20 14H14V20H10V14H4V10H10V4H14V10H20V14Z" />
+                </svg>
+            </button>
+        </div>
+        <div id="book-modal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <form id="book-form">
+                    <legend>Add New Book</legend>
+                    <label for="book-title">Title</label>
+                    <input type="text" name="" id="book-title" required>
+                    <label for="book-author">Author</label>
+                    <input type="text" name="" id="book-author" required>
+                    <label for="no-pages">Number of pages</label>
+                    <input type="text" name="" id="no-pages" required>
+                    <label for="book-language">Language</label>
+                    <input type="text" name="" id="book-language" required>
+                    <label for="publish-date">Publish date</label>
+                    <input type="date" name="" id="publish-date" required>
+                    <label for="book-status">Book Status</label>
+                    <select name="" id="book-status" required>
+                        <option>Read</option>
+                        <option>Not read</option>
+                    </select>
+                    <button class="form-btn" id="form-btn" type="submit">Add</button>
+                </form>
+            </div>
+        </div>
     </div>
-
     <script src="script.js"></script>
 </body>
 </html>
