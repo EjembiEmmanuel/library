@@ -72,14 +72,26 @@ function displayBooks() {
               language.textContent = `Language: ${currentBook.language}`;
               published.textContent = `Published: ${currentBook.published}`;
 
-              if(books[i].bookStatus == 'Read') {
+              if(currentBook.bookStatus == 'Read') {
                 readToggle.checked = true;
-              } else if(books[i].bookStatus == 'Not read') {
+              } else if(currentBook.bookStatus == 'Not read') {
                 readToggle.checked = false;
               }
               
           }  
       }
+
+      readToggle.addEventListener('click', function() {
+        if(currentBook.bookStatus == 'Read') {
+          currentBook.bookStatus = 'Not Read';
+          localStorage.setItem('books', JSON.stringify(books));
+          window.location.reload();
+        } else if(currentBook.bookStatus == 'Not Read') {
+          currentBook.bookStatus = 'Read';
+          localStorage.setItem('books', JSON.stringify(books));
+          window.location.reload();
+        }
+      });
 
       let deleteBookBtn = currentBookTile.querySelector('.delete-book');
       deleteBookBtn.addEventListener('click', function() {
