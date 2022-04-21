@@ -61,9 +61,10 @@ function displayBooks() {
       let language = currentBookTile.querySelector('.language');
       let published = currentBookTile.querySelector('.published');
       let readToggle = currentBookTile.querySelector('#read-toggle');
+      let currentBook;
 
       for(let j = 0; j < books.length; j++) {
-          let currentBook = books[i];
+          currentBook = books[i];
           if(currentBook) {
               title.textContent = currentBook.title;
               author.textContent = `By: ${currentBook.author}`;
@@ -79,7 +80,15 @@ function displayBooks() {
               
           }  
       }
-  }
+
+      let deleteBookBtn = currentBookTile.querySelector('.delete-book');
+      deleteBookBtn.addEventListener('click', function() {
+        const index = books.indexOf(currentBook);
+        books.splice(index, 1);
+        localStorage.setItem('books', JSON.stringify(books));
+        window.location.reload();
+      });
+    }
 
 }
 
