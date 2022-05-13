@@ -45,7 +45,6 @@ function displayBooks() {
   let pages;
   let published;
   let readToggle;
-  let readToggles;
 
   let books = JSON.parse(localStorage.books);
 
@@ -69,8 +68,6 @@ function displayBooks() {
     booksGrid.appendChild(bookCardsClone); 
   }
 
-  
-
   bookCards = document.querySelectorAll('.books');
 
   for(let i = 0; i < bookCards.length; i++) {
@@ -82,7 +79,6 @@ function displayBooks() {
     language = currentBookTile.querySelector('.language');
     published = currentBookTile.querySelector('.published');
     readToggle = currentBookTile.querySelector('.read-toggle')
-    
     
     currentBook = books[i];
     title.textContent = currentBook.title;
@@ -96,17 +92,9 @@ function displayBooks() {
     } else if(currentBook.bookStatus == 'Not read') {
       readToggle.checked = false;
     }
-
-    let deleteBookBtn = currentBookTile.querySelector('.delete-book');
-    deleteBookBtn.addEventListener('click', function() {
-      const index = books.indexOf(currentBook);
-      books.splice(index, 1);
-      localStorage.setItem('books', JSON.stringify(books));
-      window.location.reload();
-    });
   }
 
-  readToggles = document.querySelectorAll('.read-toggle');
+  let readToggles = document.querySelectorAll('.read-toggle');
   readToggles.forEach(readToggle => readToggle.addEventListener('click', function() {
     const index = Array.from(readToggles).indexOf(readToggle);
     if(books[index].bookStatus == 'Read') {
@@ -116,6 +104,14 @@ function displayBooks() {
       books[index].bookStatus = 'Read';
       localStorage.setItem('books', JSON.stringify(books));
     }
+  }));
+
+  let deleteBookBtns = currentBookTile.querySelectorAll('.delete-book');
+  deleteBookBtns.forEach(deleteBookBtn => deleteBookBtn.addEventListener('click', function() {
+    const index = Array.from(deleteBookBtns).indexOf(deleteBookBtn);
+    books.splice(index, 1);
+    localStorage.setItem('books', JSON.stringify(books));
+    window.location.reload();
   }));
 
   for(let i = 0; i < books.length; i++) {
