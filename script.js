@@ -38,9 +38,27 @@ function displayBooks() {
   let bookCard = document.querySelector('.books');
   let bookCardsClone;
 
+  let currentBookTile;
+
+  let title;
+  let author;
+  let pages;
+  let published;
+  let readToggle;
+  let readToggles;
+
   let books = JSON.parse(localStorage.books);
 
   let neededTiles = 0;
+
+  let currentBook;
+
+  let totalBooks;
+
+  let read = document.querySelector('.read');
+  let notRead = document.querySelector('.not-read');
+  let numberOfReadBooks = 0;
+  let numberOfUnreadBooks = 0;
 
   if(books.length > bookCards.length) {
     neededTiles = books.length - bookCards.length;
@@ -51,58 +69,72 @@ function displayBooks() {
     booksGrid.appendChild(bookCardsClone); 
   }
 
+  
+
   bookCards = document.querySelectorAll('.books');
 
   for(let i = 0; i < bookCards.length; i++) {
-      let currentBookTile = bookCards[i];
-      let title = currentBookTile.querySelector('.title');
-      let author = currentBookTile.querySelector('.author');
-      let pages = currentBookTile.querySelector('.pages');
-      let language = currentBookTile.querySelector('.language');
-      let published = currentBookTile.querySelector('.published');
-      let readToggle = currentBookTile.querySelector('#read-toggle');
-      let currentBook;
+    currentBookTile = bookCards[i];
 
-      for(let j = 0; j < books.length; j++) {
-          currentBook = books[i];
-          if(currentBook) {
-              title.textContent = currentBook.title;
-              author.textContent = `By: ${currentBook.author}`;
-              pages.textContent = `Number of pages: ${currentBook.pages}`;
-              language.textContent = `Language: ${currentBook.language}`;
-              published.textContent = `Published: ${currentBook.published}`;
+    title = currentBookTile.querySelector('.title');
+    author = currentBookTile.querySelector('.author');
+    pages = currentBookTile.querySelector('.pages');
+    language = currentBookTile.querySelector('.language');
+    published = currentBookTile.querySelector('.published');
+    readToggle = currentBookTile.querySelector('.read-toggle')
+    
+    
+    currentBook = books[i];
+    title.textContent = currentBook.title;
+    author.textContent = `By: ${currentBook.author}`;
+    pages.textContent = `Number of pages: ${currentBook.pages}`;
+    language.textContent = `Language: ${currentBook.language}`;
+    published.textContent = `Published: ${currentBook.published}`;
 
-              if(currentBook.bookStatus == 'Read') {
-                readToggle.checked = true;
-              } else if(currentBook.bookStatus == 'Not read') {
-                readToggle.checked = false;
-              }
-              
-          }  
-      }
-
-      readToggle.addEventListener('click', function() {
-        if(currentBook.bookStatus == 'Read') {
-          currentBook.bookStatus = 'Not Read';
-          localStorage.setItem('books', JSON.stringify(books));
-          window.location.reload();
-        } else if(currentBook.bookStatus == 'Not Read') {
-          currentBook.bookStatus = 'Read';
-          localStorage.setItem('books', JSON.stringify(books));
-          window.location.reload();
-        }
-      });
-
-      let deleteBookBtn = currentBookTile.querySelector('.delete-book');
-      deleteBookBtn.addEventListener('click', function() {
-        const index = books.indexOf(currentBook);
-        books.splice(index, 1);
-        localStorage.setItem('books', JSON.stringify(books));
-        window.location.reload();
-      });
+    if(currentBook.bookStatus == 'Read') {
+      readToggle.checked = true;
+    } else if(currentBook.bookStatus == 'Not read') {
+      readToggle.checked = false;
     }
 
+    let deleteBookBtn = currentBookTile.querySelector('.delete-book');
+    deleteBookBtn.addEventListener('click', function() {
+      const index = books.indexOf(currentBook);
+      books.splice(index, 1);
+      localStorage.setItem('books', JSON.stringify(books));
+      window.location.reload();
+    });
+  }
+
+  readToggles = document.querySelectorAll('.read-toggle');
+  readToggles.forEach(readToggle => readToggle.addEventListener('click', function() {
+    const index = Array.from(readToggles).indexOf(readToggle);
+    if(books[index].bookStatus == 'Read') {
+      books[index].bookStatus = 'Not read';
+      localStorage.setItem('books', JSON.stringify(books));
+    } else if(books[index].bookStatus == 'Not read') {
+      books[index].bookStatus = 'Read';
+      localStorage.setItem('books', JSON.stringify(books));
+    }
+  }));
+
+  for(let i = 0; i < books.length; i++) {
+    if(currentBook.bookStatus == 'Read') {
+      // numberOfReadBooks++;
+    } else if(currentBook.bookStatus == 'Not read') {
+      // numberOfUnreadBooks++;
+      
+    }
+  }
+
+  totalBooks = document.querySelector('.total-books');
+  totalBooks.textContent = `Total Books: ${books.length}`;
+
+  read.textContent = `Read: ${numberOfReadBooks}`;
+  notRead.textContent = `Not Read: ${numberOfUnreadBooks}`;
+
 }
+
 
 let modal = document.getElementById("book-modal");
 let btn = document.getElementById("modal-btn");
