@@ -39,11 +39,6 @@ function displayBooks() {
 
   let books = JSON.parse(localStorage.books);
 
-  let read = document.querySelector('.read');
-  let notRead = document.querySelector('.not-read');
-  let numberOfReadBooks = 0;
-  let numberOfUnreadBooks = 0;
-
   let neededTiles = 0;
   if(books.length > bookCards.length) {
     neededTiles = books.length - bookCards.length;
@@ -99,18 +94,21 @@ function displayBooks() {
     window.location.reload();
   }));
 
-  // for(let i = 0; i < books.length; i++) {
-  //   if(currentBook.bookStatus == 'Read') {
-  //     // numberOfReadBooks++;
-  //   } else if(currentBook.bookStatus == 'Not read') {
-  //     // numberOfUnreadBooks++;
-      
-  //   }
-  // }
-
   let totalBooks = document.querySelector('.total-books');
   totalBooks.textContent = `Total Books: ${books.length}`;
 
+  let numberOfReadBooks = 0;
+  let numberOfUnreadBooks = 0;
+  for(let i = 0; i < books.length; i++) {
+    if(books[i].bookStatus == 'Read') {
+      numberOfReadBooks++;
+    } else if(books[i].bookStatus == 'Not read') {
+      numberOfUnreadBooks++;
+    }
+  }
+  
+  let read = document.querySelector('.read');
+  let notRead = document.querySelector('.not-read');
   read.textContent = `Read: ${numberOfReadBooks}`;
   notRead.textContent = `Not Read: ${numberOfUnreadBooks}`;
 
