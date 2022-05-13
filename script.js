@@ -36,51 +36,36 @@ function displayBooks() {
   let booksGrid = document.querySelector('.books-grid');
   let bookCards = document.querySelectorAll('.books');
   let bookCard = document.querySelector('.books');
-  let bookCardsClone;
-
-  let currentBookTile;
-
-  let title;
-  let author;
-  let pages;
-  let published;
-  let readToggle;
 
   let books = JSON.parse(localStorage.books);
-
-  let neededTiles = 0;
-
-  let currentBook;
-
-  let totalBooks;
 
   let read = document.querySelector('.read');
   let notRead = document.querySelector('.not-read');
   let numberOfReadBooks = 0;
   let numberOfUnreadBooks = 0;
 
+  let neededTiles = 0;
   if(books.length > bookCards.length) {
     neededTiles = books.length - bookCards.length;
   }
   
   for(let i = 1; i <= neededTiles; i++) {
-    bookCardsClone =  bookCard.cloneNode(true);
+    let bookCardsClone =  bookCard.cloneNode(true);
     booksGrid.appendChild(bookCardsClone); 
   }
 
   bookCards = document.querySelectorAll('.books');
-
   for(let i = 0; i < bookCards.length; i++) {
-    currentBookTile = bookCards[i];
+    let currentBookTile = bookCards[i];
 
-    title = currentBookTile.querySelector('.title');
-    author = currentBookTile.querySelector('.author');
-    pages = currentBookTile.querySelector('.pages');
-    language = currentBookTile.querySelector('.language');
-    published = currentBookTile.querySelector('.published');
-    readToggle = currentBookTile.querySelector('.read-toggle')
+    let title = currentBookTile.querySelector('.title');
+    let author = currentBookTile.querySelector('.author');
+    let pages = currentBookTile.querySelector('.pages');
+    let language = currentBookTile.querySelector('.language');
+    let published = currentBookTile.querySelector('.published');
+    let readToggle = currentBookTile.querySelector('.read-toggle')
     
-    currentBook = books[i];
+    let currentBook = books[i];
     title.textContent = currentBook.title;
     author.textContent = `By: ${currentBook.author}`;
     pages.textContent = `Number of pages: ${currentBook.pages}`;
@@ -106,7 +91,7 @@ function displayBooks() {
     }
   }));
 
-  let deleteBookBtns = currentBookTile.querySelectorAll('.delete-book');
+  let deleteBookBtns = document.querySelectorAll('.delete-book');
   deleteBookBtns.forEach(deleteBookBtn => deleteBookBtn.addEventListener('click', function() {
     const index = Array.from(deleteBookBtns).indexOf(deleteBookBtn);
     books.splice(index, 1);
@@ -114,16 +99,16 @@ function displayBooks() {
     window.location.reload();
   }));
 
-  for(let i = 0; i < books.length; i++) {
-    if(currentBook.bookStatus == 'Read') {
-      // numberOfReadBooks++;
-    } else if(currentBook.bookStatus == 'Not read') {
-      // numberOfUnreadBooks++;
+  // for(let i = 0; i < books.length; i++) {
+  //   if(currentBook.bookStatus == 'Read') {
+  //     // numberOfReadBooks++;
+  //   } else if(currentBook.bookStatus == 'Not read') {
+  //     // numberOfUnreadBooks++;
       
-    }
-  }
+  //   }
+  // }
 
-  totalBooks = document.querySelector('.total-books');
+  let totalBooks = document.querySelector('.total-books');
   totalBooks.textContent = `Total Books: ${books.length}`;
 
   read.textContent = `Read: ${numberOfReadBooks}`;
