@@ -53,7 +53,7 @@ function displayBooks() {
   for(let i = 0; i < bookCards.length; i++) {
     let currentBookTile = bookCards[i];
 
-    let title = currentBookTile.querySelector('.title');
+    let title = currentBookTile.querySelector('#title-text');
     let author = currentBookTile.querySelector('.author');
     let pages = currentBookTile.querySelector('.pages');
     let language = currentBookTile.querySelector('.language');
@@ -69,8 +69,11 @@ function displayBooks() {
 
     if(currentBook.bookStatus == 'Read') {
       readToggle.checked = true;
+      currentBookTile.classList.remove('not-read-book');
     } else if(currentBook.bookStatus == 'Not read') {
       readToggle.checked = false;
+      currentBookTile.classList.add('not-read-book');
+      
     }
   }
 
@@ -80,9 +83,11 @@ function displayBooks() {
     if(books[index].bookStatus == 'Read') {
       books[index].bookStatus = 'Not read';
       localStorage.setItem('books', JSON.stringify(books));
+      window.location.reload();
     } else if(books[index].bookStatus == 'Not read') {
       books[index].bookStatus = 'Read';
       localStorage.setItem('books', JSON.stringify(books));
+      window.location.reload();
     }
   }));
 
@@ -106,14 +111,13 @@ function displayBooks() {
       numberOfUnreadBooks++;
     }
   }
-  
-  let read = document.querySelector('.read');
-  let notRead = document.querySelector('.not-read');
-  read.textContent = `Read: ${numberOfReadBooks}`;
-  notRead.textContent = `Not Read: ${numberOfUnreadBooks}`;
+
+  let readText = document.querySelector('#read-text');
+  let notReadText = document.querySelector('#not-read-text');
+  readText.textContent = `Read: ${numberOfReadBooks}`;
+  notReadText.textContent = `Not Read: ${numberOfUnreadBooks}`;
 
 }
-
 
 let modal = document.getElementById("book-modal");
 let btn = document.getElementById("modal-btn");
